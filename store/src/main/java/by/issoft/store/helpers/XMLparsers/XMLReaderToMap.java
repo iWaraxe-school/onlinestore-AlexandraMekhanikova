@@ -4,11 +4,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class XMLReaderToMap {
@@ -36,8 +36,8 @@ public class XMLReaderToMap {
             if (sortProperties.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 elementary = (Element) sortProperties.item(i);
 
-                SortKey key = SortKey.valueOf(elementary.getTagName());
-                SortCommand value = SortCommand.valueOf(elementary.getTextContent());
+                SortKey key = SortKey.valueOf(elementary.getTagName().toUpperCase());
+                SortCommand value = SortCommand.valueOf(elementary.getTextContent().toUpperCase());
                 propertiesMap.put(key, value);
             }
         return propertiesMap;
