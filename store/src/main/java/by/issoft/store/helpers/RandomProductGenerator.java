@@ -6,11 +6,11 @@ public class RandomProductGenerator {
 
     public String getProductName(String categoryName){
         switch(categoryName){
-            case "Bike":
+            case "Bikes":
                 return faker.name().name();
-            case  "Phone":
+            case  "Phones":
                 return faker.funnyName().name();
-            case "Milk":
+            case "Vegetables":
                 return faker.food().fruit();
             default:
                 return null;

@@ -10,11 +10,14 @@ public class Store {
     public void addCategory(Category category) {
         categoryList.add(category);
     }
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
     public void printStoreData(){
         System.out.println("Store{" + "categoryList" + '}');
         for (int i = 0; i < categoryList.size(); i++) {
             Category currentCategory = categoryList.get(i);
-
             System.out.print("Category Name:"+ currentCategory.getName());
             System.out.println();
             for (int j = 0; j < currentCategory.getProducts().size(); j++) {
@@ -26,5 +29,6 @@ public class Store {
             }
             System.out.println();
         }
+
     }
 }
