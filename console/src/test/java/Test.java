@@ -1,14 +1,15 @@
-package by.issoft.consoleApp;
-
 import by.issoft.store.Store;
 import by.issoft.store.helpers.RandomStorePopulator;
 import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
 
-public class StoreApp {
-    public static void main(String[] args) {
+public class Test {
+    public static void main(String[] args) throws Exception {
         Store store = new Store();
         RandomStorePopulator randomStorePopulator = new RandomStorePopulator(store);
         randomStorePopulator.fillStoreRandomly();
+
+        CombinedStreamSortHelper combinedStreamSortHelper = new CombinedStreamSortHelper(store);
+        combinedStreamSortHelper.SortCategoriesInStore();
         store.printStoreData();
     }
 }
