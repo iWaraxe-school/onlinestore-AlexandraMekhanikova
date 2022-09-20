@@ -8,16 +8,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 
-public class XMLReaderToMap {
+public class XmlReaderToMap {
     public static final String PATH = new File("store/src/main/resources/config.xml").getAbsolutePath();
 
-    public static Map<SortKey, SortCommand> getPropertiesToSort() {
+    public static Map<Enum<SortKey>, Enum<SortCommand>> getPropertiesToSort() {
         String sortTag = "sort";
 
-        Map<SortKey, SortCommand> propertiesMap = new LinkedHashMap<>();
+        Map<Enum<SortKey>, Enum<SortCommand>> propertiesMap = new LinkedHashMap<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         Document document = null;
