@@ -6,6 +6,10 @@ import by.issoft.store.helpers.XMLparsers.SortCommand;
 import by.issoft.store.helpers.XMLparsers.SortKey;
 
 import by.issoft.store.helpers.XMLparsers.XmlReaderToMap;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 
@@ -52,15 +56,33 @@ public class CombinedStreamSortHelper {
     }
 
     public void SortCategoriesInStore() throws Exception {
-        for (Category category:
+        for (Category category :
                 store.getCategoryList()) {
             SortProductsInCategory(category, getMapConfig());
         }
     }
 
-    private Map<Enum<SortKey>, Enum<SortCommand>> getMapConfig(){
+    private Map<Enum<SortKey>, Enum<SortCommand>> getMapConfig() {
         XmlReaderToMap xmlReaderToMap = new XmlReaderToMap();
         Map<Enum<SortKey>, Enum<SortCommand>> mapConfig = xmlReaderToMap.getPropertiesToSort();
-        return  mapConfig;
+        return mapConfig;
+    }
+
+    public void Top5(Store store) throws IOException {
+        List<Product> allProducts = getAllProductsList(store);
+        allProducts.sort(Comparator.comparing(Product::getPrice).reversed());
+        System.out.println("Top 5 products by price:");
+        for (Product product : allProducts.subList(0, 4)) {
+            System.out.println(product);
+        }
+    }
+
+
+        public static String orderReader() throws Exception {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Please enter the command");
+            String a = reader.readLine();
+            System.out.println("you entered: " + a);
+            return a;
         }
     }

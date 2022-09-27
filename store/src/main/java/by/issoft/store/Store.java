@@ -2,6 +2,10 @@ package by.issoft.store;
 
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
+import by.issoft.store.helpers.XMLparsers.XmlReaderToMap;
+import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
+
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +18,11 @@ public class Store {
         return categoryList;
     }
 
-    public void printStoreData(){
+    public void printStoreData() {
         System.out.println("Store{" + "categoryList" + '}');
         for (int i = 0; i < categoryList.size(); i++) {
             Category currentCategory = categoryList.get(i);
-            System.out.print("Category Name:"+ currentCategory.getName());
+            System.out.print("Category Name:" + currentCategory.getName());
             System.out.println();
             for (int j = 0; j < currentCategory.getProducts().size(); j++) {
                 Product currentProduct = currentCategory.getProducts().get(j);
@@ -29,6 +33,6 @@ public class Store {
             }
             System.out.println();
         }
-
     }
-}
+    }
+
