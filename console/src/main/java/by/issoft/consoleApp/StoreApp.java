@@ -1,5 +1,4 @@
 package by.issoft.consoleApp;
-
 import by.issoft.store.Store;
 import by.issoft.store.helpers.RandomStorePopulator;
 import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
@@ -8,7 +7,7 @@ import java.io.IOException;
 
 public class StoreApp {
     public static void main(String[] args) throws Exception {
-        Store store = new Store();
+        Store store = Store.getInstance();
         RandomStorePopulator randomStorePopulator = new RandomStorePopulator(store);
         CombinedStreamSortHelper combinedStreamSortHelper = new CombinedStreamSortHelper(store);
         randomStorePopulator.fillStoreRandomly();

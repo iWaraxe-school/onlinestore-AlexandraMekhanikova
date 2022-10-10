@@ -4,7 +4,8 @@ import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        Store store = new Store();
+        Store store = Store.getInstance();
+
         RandomStorePopulator randomStorePopulator = new RandomStorePopulator(store);
         randomStorePopulator.fillStoreRandomly();
 

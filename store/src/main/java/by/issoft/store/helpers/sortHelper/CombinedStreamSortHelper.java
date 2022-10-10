@@ -78,11 +78,11 @@ public class CombinedStreamSortHelper {
     }
 
 
-        public static String orderReader() throws Exception {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Please enter the command");
-            String a = reader.readLine();
-            System.out.println("you entered: " + a);
-            return a;
-        }
+    public static String orderReader() throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Please enter the command");
+        String a = reader.readLine();
+        System.out.println("you entered: " + a);
+        return a;
     }
+}

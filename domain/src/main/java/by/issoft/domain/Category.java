@@ -19,5 +19,5 @@ public abstract class Category {
     }
     public void putProductToList(Product product) {
         products.add(product);
-        }
+    }
 }
