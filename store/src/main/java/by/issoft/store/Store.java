@@ -10,6 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
+
+    private List<Category> categories;
+    private static Store instance;
+
+    public static Store getInstance(){ //Singleton
+        if (instance==null){
+            instance = new Store();
+        }
+        return instance;
+    }
+
+    private Store() {
+        categories = new ArrayList<>();
+    }
+
     private List<Category> categoryList = new ArrayList<>();
     public void addCategory(Category category) {
         categoryList.add(category);
@@ -34,5 +49,5 @@ public class Store {
             System.out.println();
         }
     }
-    }
+}
 
