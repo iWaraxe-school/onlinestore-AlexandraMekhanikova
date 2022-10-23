@@ -27,5 +27,10 @@ public class RandomProductFactory {
     public static double getRate() {
         return faker.number().randomDouble(5, 0, 10);
     }
+
+    public static int generateTimeNumber() {
+        int number = faker.number().numberBetween(1, 3);
+        return number;
+    }
 }
 

@@ -12,6 +12,7 @@ import java.util.List;
 public class Store {
 
     private List<Category> categories;
+    public static List<Product> purchasedProducts = new ArrayList<>();
     private static Store instance;
 
     public static Store getInstance(){ //Singleton

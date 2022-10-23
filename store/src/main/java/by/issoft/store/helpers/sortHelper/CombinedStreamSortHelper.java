@@ -6,6 +6,7 @@ import by.issoft.store.helpers.XMLparsers.SortCommand;
 import by.issoft.store.helpers.XMLparsers.SortKey;
 
 import by.issoft.store.helpers.XMLparsers.XmlReaderToMap;
+import by.issoft.store.helpers.threads.ThreadOrder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -84,5 +85,32 @@ public class CombinedStreamSortHelper {
         String a = reader.readLine();
         System.out.println("you entered: " + a);
         return a;
+    }
+
+    public List<Product> findProducts(String productName){
+        List<Product> foundProducts = new ArrayList<>();
+        List<Product> allProducts = getAllProductsList(store);
+
+        for (Product product : allProducts) {
+
+            if(product.getName().equals(productName)){
+                foundProducts.add(product);
+            }
+        }
+        if (foundProducts.size() == 0){
+            System.out.println("No products found, available products:");
+            System.out.println(String.join(" \r\n", allProducts.stream().map(Product::getName).toArray(String[]::new)));
+        }
+        else {
+            System.out.println("Found products:");
+            for (Product product : foundProducts) {
+                System.out.println(product);
+            }
+        }
+        return foundProducts;
+    }
+
+    public void createOrder(String productName) {
+        new Thread(new ThreadOrder(findProducts(productName))).start();
     }
 }
