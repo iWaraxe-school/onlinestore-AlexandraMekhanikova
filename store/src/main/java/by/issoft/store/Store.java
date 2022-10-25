@@ -8,10 +8,12 @@ import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Store {
 
     private List<Category> categories;
+    public static CopyOnWriteArrayList<Product> purchasedProducts = new CopyOnWriteArrayList<>(); //added CopyOnWriteArrayList
     private static Store instance;
 
     public static Store getInstance(){ //Singleton
