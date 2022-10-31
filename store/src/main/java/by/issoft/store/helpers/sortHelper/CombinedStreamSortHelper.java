@@ -2,6 +2,7 @@ package by.issoft.store.helpers.sortHelper;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 import by.issoft.store.Store;
+import by.issoft.store.helpers.DataBase.DataBaseHelpers;
 import by.issoft.store.helpers.XMLparsers.SortCommand;
 import by.issoft.store.helpers.XMLparsers.SortKey;
 
@@ -23,6 +24,8 @@ public class CombinedStreamSortHelper {
 
     Store store;
 
+    List<Category> sortedCategories = new ArrayList<>();
+
     public CombinedStreamSortHelper(Store store) {
         this.store = store;
     }
@@ -30,7 +33,8 @@ public class CombinedStreamSortHelper {
     public List<Product> getAllProductsList(Store store) {
         List<Product> allProducts = new ArrayList<>();
         for (Category category : store.getCategoryList()) {
-            allProducts.addAll(category.getProducts());
+            List<Product> products = DataBaseHelpers.getProducts(category);
+            allProducts.addAll(products);
         }
         return allProducts;
     }
@@ -53,14 +57,13 @@ public class CombinedStreamSortHelper {
     }
 
     public void SortProductsInCategory(Category category, Map<Enum<SortKey>, Enum<SortCommand>> mapConfig) throws Exception {
-        category.getProducts().sort(buildComparator(mapConfig));
+        List<Product> products = DataBaseHelpers.getProducts(category);
+        products.sort(buildComparator(mapConfig));
     }
 
-    public void SortCategoriesInStore() throws Exception {
-        for (Category category :
-                store.getCategoryList()) {
-            SortProductsInCategory(category, getMapConfig());
-        }
+    public List<Product> sortProducts(List<Product> products) throws Exception {
+        products.sort(buildComparator(getMapConfig()));
+        return products;
     }
 
     private Map<Enum<SortKey>, Enum<SortCommand>> getMapConfig() {
@@ -69,7 +72,7 @@ public class CombinedStreamSortHelper {
         return mapConfig;
     }
 
-    public void Top5(Store store) throws IOException {
+    public void top5(Store store) throws IOException {
         List<Product> allProducts = getAllProductsList(store);
         allProducts.sort(Comparator.comparing(Product::getPrice).reversed());
         System.out.println("Top 5 products by price:");

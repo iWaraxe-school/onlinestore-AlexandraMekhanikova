@@ -1,6 +1,7 @@
 package by.issoft.domain;
 
 public class Product {
+
     private String name;
     private Double rate;
     private Double price;
@@ -35,4 +36,12 @@ public class Product {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", rate=" + rate +
+                ", price=" + price +
+                '}';
+    }
 }
