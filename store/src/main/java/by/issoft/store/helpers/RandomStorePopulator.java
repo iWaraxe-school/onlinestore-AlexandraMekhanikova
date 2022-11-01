@@ -3,6 +3,7 @@ package by.issoft.store.helpers;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 import by.issoft.store.Store;
+import by.issoft.store.helpers.DataBase.DataBaseHelpers;
 import by.issoft.store.helpers.product.RandomProductFactory;
 import org.reflections.Reflections;
 import java.lang.reflect.InvocationTargetException;
@@ -25,9 +26,8 @@ public class RandomStorePopulator {
             Random random = new Random();
             for (int i = 0; i < random.nextInt(10) + 1; i++) {
                 Product product = RandomProductFactory.getProduct(category.getName());
-                category.putProductToList(product);
+                DataBaseHelpers.saveProduct(category, product);
             }
-            this.store.addCategory(category);
         }
     }
 
