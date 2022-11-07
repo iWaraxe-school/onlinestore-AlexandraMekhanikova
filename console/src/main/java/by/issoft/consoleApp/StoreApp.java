@@ -3,19 +3,23 @@ package by.issoft.consoleApp;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 import by.issoft.store.Store;
-import by.issoft.store.helpers.DataBase.DataBaseHelpers;
+import by.issoft.store.helpers.api.ApiHelpers;
 import by.issoft.store.helpers.RandomStorePopulator;
+import by.issoft.store.helpers.api.HttpServerHelpers;
+import by.issoft.store.helpers.dataBase.DataBaseHelpers;
 import by.issoft.store.helpers.sortHelper.CombinedStreamSortHelper;
 import by.issoft.store.helpers.threads.ThreadTime;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Timer;
 
 public class StoreApp {
     public static void main(String[] args) throws Exception {
+        HttpServerHelpers.createServer();
+        HttpServerHelpers.startServer();
+
         Store store = Store.getInstance();
         RandomStorePopulator randomStorePopulator = new RandomStorePopulator(store);
         CombinedStreamSortHelper combinedStreamSortHelper = new CombinedStreamSortHelper(store);
@@ -31,10 +35,10 @@ public class StoreApp {
             String order = CombinedStreamSortHelper.orderReader();
             switch (order) {
                 case "sort":
-                    List<Category> categories = DataBaseHelpers.getCategories();
+                    List<Category> categories = ApiHelpers.getCategories();
                     for (Category category : categories) {
                         System.out.println(category.getName());
-                        List<Product> sortedProducts = combinedStreamSortHelper.sortProducts(DataBaseHelpers.getProducts(category));
+                        List<Product> sortedProducts = combinedStreamSortHelper.SortProducts(DataBaseHelpers.getProducts(category));
                         for (Product product : sortedProducts) {
                             System.out.println(product.toString());
                         }

@@ -2,7 +2,7 @@ package by.issoft.store;
 
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
-import by.issoft.store.helpers.DataBase.DataBaseHelpers;
+import by.issoft.store.helpers.dataBase.DataBaseHelpers;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

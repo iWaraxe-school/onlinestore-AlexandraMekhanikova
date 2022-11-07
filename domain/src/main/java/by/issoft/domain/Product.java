@@ -1,7 +1,6 @@
 package by.issoft.domain;
 
 public class Product {
-
     private String name;
     private Double rate;
     private Double price;
@@ -12,12 +11,24 @@ public class Product {
         this.price = price;
     }
 
+    public Product() {
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", rate=" + rate +
+                ", price=" + price +
+                '}';
     }
 
     public Double getRate() {
@@ -36,12 +47,4 @@ public class Product {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", rate=" + rate +
-                ", price=" + price +
-                '}';
-    }
 }
