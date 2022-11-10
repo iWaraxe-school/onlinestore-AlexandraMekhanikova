@@ -2,11 +2,11 @@ package by.issoft.store.helpers.sortHelper;
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
 import by.issoft.store.Store;
-import by.issoft.store.helpers.DataBase.DataBaseHelpers;
 import by.issoft.store.helpers.XMLparsers.SortCommand;
 import by.issoft.store.helpers.XMLparsers.SortKey;
 
 import by.issoft.store.helpers.XMLparsers.XmlReaderToMap;
+import by.issoft.store.helpers.dataBase.DataBaseHelpers;
 import by.issoft.store.helpers.threads.ThreadOrder;
 
 import java.io.BufferedReader;
@@ -61,7 +61,7 @@ public class CombinedStreamSortHelper {
         products.sort(buildComparator(mapConfig));
     }
 
-    public List<Product> sortProducts(List<Product> products) throws Exception {
+    public List<Product> SortProducts(List<Product> products) throws Exception {
         products.sort(buildComparator(getMapConfig()));
         return products;
     }

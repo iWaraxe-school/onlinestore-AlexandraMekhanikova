@@ -1,4 +1,4 @@
-package by.issoft.store.helpers.DataBase;
+package by.issoft.store.helpers.dataBase;
 
 import by.issoft.domain.Category;
 import by.issoft.domain.Product;
@@ -6,7 +6,6 @@ import by.issoft.domain.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class DataBaseHelpers {
 
@@ -19,12 +18,13 @@ public class DataBaseHelpers {
         }
     }
 
-    public static void saveProduct(Category category, Product product) {
+    public static void saveProduct(String categoryName, Product product) {
         Statement statement = null;
         try {
             statement = getConnection().createStatement();
-            String query = String.format(Locale.ROOT,"INSERT INTO \"OnlineStore\".products (name, rate, price, category_id) VALUES ('%s', '%f', '%f', (Select ID FROM \"OnlineStore\".categories Where name = '%s'))", product.getName().replace("'","''"), product.getRate(), product.getPrice(), category.getName());
+            String query = String.format("INSERT INTO \"OnlineStore\".products (name, rate, price, category_id) VALUES ('%s', '%f', '%f', (Select ID FROM \"OnlineStore\".categories Where name = '%s'))", product.getName().replace("'","''"), product.getRate(), product.getPrice(), categoryName);
             statement.execute(query);
+            System.out.println("Product " + product.getName() + " was added to the database");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
